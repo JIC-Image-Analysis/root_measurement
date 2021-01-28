@@ -3,11 +3,21 @@ Explanation
 Clone repository
 ----------------
 
+Clone or download the code repository.
+
 Install bftools
 ----------------
 
-bash install-bftools.sh
-export PATH=$PATH:~/packages/bftools
+Next install bioformats tools:
+
+.. code-block:: bash
+
+    bash install-bftools.sh
+    export PATH=$PATH:~/packages/bftools
+    bftools -version
+
+The last command checks that the install has worked by printing the bioformats
+version.
 
 Create Python virtualenv
 ------------------------

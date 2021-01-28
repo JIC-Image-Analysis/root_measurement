@@ -39,5 +39,10 @@ Install requirements:
 Test image conversion
 ---------------------
 
-mkdir scratch
-python scripts/quick_convert_to_ids.py local-data/example_image_dir scratch myids
+To test the image conversion, first create a folder called ``local-data``. Then
+copy some test .czi files into that folder. Then, to test the conversion:
+
+.. code-block:: bash
+
+    mkdir scratch
+    python scripts/quick_convert_to_ids.py local-data scratch myids

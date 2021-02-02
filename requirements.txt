@@ -8,7 +8,7 @@ blosc==1.10.2
 cffi==1.14.4
 click==7.1.2
 cycler==0.10.0
--e git+git@github.com:JIC-Image-Analysis/dbimage.git@0fe6cd49ad4d59e129fde8a1d48747a93b9aeefe#egg=dbimage
+dbimage
 decorator==4.4.2
 defusedxml==0.6.0
 dtoolbioimage==0.1.10
@@ -58,13 +58,13 @@ PyWavelets==1.1.1
 pyzmq==21.0.2
 ruamel.yaml==0.16.12
 ruamel.yaml.clib==0.2.2
--e git+git@github.com:mrmh2/runtools.git@d08c54e508160ed94cefad845737472d5a1717f7#egg=runtools
+mruntools
 scikit-image==0.18.1
 scipy==1.6.0
 Send2Trash==1.5.0
 SimpleITK==2.0.2
 six==1.15.0
--e git+git@github.com:mrmh2/stacktools.git@b6621a40cbb6025945766239c7f25630dfab4591#egg=stacktools
+-e git+https://github.com/mrmh2/stacktools.git@b6621a40cbb6025945766239c7f25630dfab4591#egg=stacktools
 terminado==0.9.2
 testpath==0.4.4
 tifffile==2021.1.14

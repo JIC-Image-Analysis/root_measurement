@@ -14,7 +14,7 @@ Next install bioformats tools:
 
     bash install-bftools.sh
     export PATH=$PATH:~/packages/bftools
-    bftools -version
+    bfconvert -version
 
 The last command checks that the install has worked by printing the bioformats
 version.

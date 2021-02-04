@@ -10,7 +10,7 @@ from dtoolbioimage.segment import Segmentation3D
 from mruntools.config import Config
 from mruntools.run import run_process
 from mruntools.spec import specs_from_fpath_metadata, get_all_specs
-#from stacktools.data import InitialsSMS
+from stacktools.data import InitialsSMS
 from stacktools.data import SegmentationMeasureStack
 from stacktools.measure import measure_all_regions
 

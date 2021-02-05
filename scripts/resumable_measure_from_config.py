@@ -42,11 +42,14 @@ def main(config_fpath):
         for st in ids.all_possible_stack_tuples()
     }
 
+    print(tuple_lookup)
+    print(specs)
+
     def annotate_spec(spec):
-        spec_template = "Image_{n}"
+        spec_template = config.segmentation_spec_template
         spec_key = spec.template_repr(spec_template)
         spec.image_name, spec.series_name, spec.sidx = tuple_lookup[spec_key]
-        spec.fname = spec.template_repr("Image_{n}.{ext}.csv")
+        spec.fname = spec.template_repr(config.segmentation_fname_template)
 
         return spec
 

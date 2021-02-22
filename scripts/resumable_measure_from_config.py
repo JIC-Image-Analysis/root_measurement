@@ -37,8 +37,14 @@ def main(config_fpath):
     specs = generate_candidate_item_specs(config)
 
     ids = ImageDataSet(config.ids_uri)
+
+    try:
+        sidx = config.specifier_tuple_index
+    except KeyError:
+        sidx = 0
+
     tuple_lookup = {
-        st[0]: st
+        st[sidx]: st
         for st in ids.all_possible_stack_tuples()
     }
 

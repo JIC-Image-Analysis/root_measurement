@@ -69,13 +69,23 @@ def main(config_fpath):
         root_data = pd.read_csv(config.output_fpath)
         root_data["file_id"] = root_data["label"]
 
+        selected_root_data = root_data[
+            (root_data.root_number == spec.n) & \
+            (root_data.genotype == spec.genotype)
+        ]
+
         fcaroot = FCARootData(
             spec.image_name,
             sms.wall_stack,
             sms.measure_stack,
             sms.segmentation,
-            root_data
+            selected_root_data
         )
+
+        # fid = 3
+        # p = create_annotated_file_projection(fcaroot, fid, fcaroot.denoised_venus_stack)
+        # p.view(dbiImage).save("p.png")
+
 
         sections = [
             create_annotated_file_projection(fcaroot, fid, fcaroot.denoised_venus_stack)

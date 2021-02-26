@@ -29,8 +29,14 @@ def annotated_specs_from_config(config):
     specs = generate_candidate_item_specs(config)
 
     ids = ImageDataSet(config.ids_uri)
+
+    try:
+        sidx = config.specifier_tuple_index
+    except KeyError:
+        sidx = 0
+
     tuple_lookup = {
-        st[0]: st
+        st[sidx]: st
         for st in ids.all_possible_stack_tuples()
     }
 
@@ -56,6 +62,11 @@ def main(config_fpath):
 
     config = Config.from_fpath(config_fpath)
 
+    try:
+        sidx = config.specifier_tuple_index
+    except KeyError:
+        sidx = 0
+    
     annotated_specs = annotated_specs_from_config(config)
     logger.info(f"Founds specs: {annotated_specs}")
 
@@ -92,7 +103,11 @@ def main(config_fpath):
             for fid in fcaroot.files
         ]
 
-        output_fpath = vis_dirpath/f"{spec.image_name}.png"
+        if sidx>0:
+            output_fpath = vis_dirpath/f"{spec.series_name}.png"
+        else:
+            output_fpath = vis_dirpath/f"{spec.image_name}.png"
+        
         composite = np.vstack(sections).view(dbiImage)
         composite.save(output_fpath)
 

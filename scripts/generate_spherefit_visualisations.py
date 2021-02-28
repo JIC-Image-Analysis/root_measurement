@@ -80,6 +80,11 @@ def main(config_fpath):
         root_data = pd.read_csv(config.output_fpath)
         root_data["file_id"] = root_data["label"]
 
+        try:
+            testIfSn = spec.n
+        except AttributeError:
+            spec.n = 1
+            
         selected_root_data = root_data[
             (root_data.root_number == spec.n) & \
             (root_data.genotype == spec.genotype)

@@ -82,11 +82,6 @@ def main(config_fpath):
             selected_root_data
         )
 
-        # fid = 3
-        # p = create_annotated_file_projection(fcaroot, fid, fcaroot.denoised_venus_stack)
-        # p.view(dbiImage).save("p.png")
-
-
         sections = [
             create_annotated_file_projection(fcaroot, fid, fcaroot.denoised_venus_stack)
             for fid in fcaroot.files

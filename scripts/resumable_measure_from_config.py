@@ -66,7 +66,10 @@ def main(config_fpath):
     def measure_from_spec(spec):
         sms = InitialsSMS.from_config_and_spec(config, spec)
         measures = measure_all_regions(sms)
-        measures['root_number'] = spec.n
+        try:
+            measures['root_number'] = spec.n
+        except AttributeError:
+            measures['root_number'] = 1
 
         return measures
 

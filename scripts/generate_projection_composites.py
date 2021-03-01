@@ -44,6 +44,11 @@ def main(config_fpath):
 
     config = Config.from_fpath(config_fpath)
 
+    try:
+        sidx = config.specifier_tuple_index
+    except KeyError:
+        sidx = 0
+    
     annotated_specs = annotated_specs_from_config(config)
     logger.info(f"Founds specs: {annotated_specs}")
 
@@ -60,13 +65,24 @@ def main(config_fpath):
         #FIXME - this isn't quite right
         root_data["cell_centroid"] = root_data["sphere_fit_centroid"]
 
+        try:
+            testIfSn = spec.n
+        except AttributeError:
+            spec.n = 1
+
         selected_root_data = root_data[
             (root_data.root_number == spec.n) &
             (root_data.genotype == spec.genotype)
         ]
+        
+        
+        if sidx>0:
+            name_to_give = spec.series_name
+        else:
+            name_to_give = spec.image_name
 
         fcaroot = FCARootData(
-            spec.image_name,
+            name_to_give,
             sms.wall_stack,
             sms.measure_stack,
             sms.segmentation,
@@ -75,7 +91,7 @@ def main(config_fpath):
 
         for fid in fcaroot.files:
             fsm = create_file_projection_composite(fcaroot, fid)
-            fname = f"{spec.image_name}-file{fid}.png"
+            fname = f"{name_to_give}-file{fid}.png"
             fpath = vis_dirpath/fname
 
             fsm.save(fpath)

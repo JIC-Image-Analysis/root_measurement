@@ -1,0 +1,27 @@
+raw_data_uri: "$REPLACE_WITH_raw_data_FOLDER_LOCATION"
+raw_file_type: "*.lif" # or "*.czi"
+ids_base_uri: "$REPLACE_WITH_LOCATION_OF_ids_FOLDER_-_must_exist"
+ids_name: "$REPLACE_WITH_ids_FOLDER_NAME_-_to_be_created"
+ids_uri: "$REPLACE_WITH_ids_FOLDER_LOCATION"
+wall_channel: 1
+measure_channel: 0
+output_base_uri: "$REPLACE_WITH_LOCATION_OF_segmentation_output_FOLDER_-_must_exist"
+output_name: "$REPLACE_WITH_segmentation_output_FOLDER_NAME_-_to_be_created"
+params:
+  level: 0.3
+segmentation_dirpath: "$REPLACE_WITH_corrected_segmentations_FOLDER_LOCATION"
+working_dirpath: "$REPLACE_WITH_temporary_output_FOLDER_LOCATION_-_to_be_created"
+output_fpath: "$REPLACE_WITH_output_FOLDER_NAME"/data.csv
+visualisation_dirpath: "$REPLACE_WITH_output_FOLDER_NAME"/root_file_images
+composite_dirpath: "$REPLACE_WITH_output_FOLDER_NAME"/composite_images
+parse_templates:
+  - "{genotype}-{n:d}.tif.csv"
+  - "{genotype}_epidermis_root_{n:d}.csv"
+  - "{genotype}FLCVenus_root{n:d}.csv"
+  - "Image_{n:d}.{ext}.csv"
+  - "Image{n:d}.{ext}.csv"
+  - "Root_Segments.tif.csv"
+segmentation_spec_template: "{genotype}_epidermis_root_{n:d}"
+segmentation_fname_template: "{genotype}_epidermis_root_{n:d}.tif"
+regions_fname_template: "{genotype}_epidermis_root_{n:d}.csv"
+specifier_tuple_index: 1

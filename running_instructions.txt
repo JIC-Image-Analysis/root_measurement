@@ -1,0 +1,34 @@
+### Instructions for running root_measurement code after successful installation
+
+## step 0 - Requirements before running
+# Prepare a config file like the attached config.yml file
+# This needs to specify the directories of your data and intermediate files
+# It must also specify the folder (config: "output_base_uri", which must be an existing folder!) into which the results (config: "output_name" folder) will go
+# It also needs to give the segmentation parameter value. Start with that already in cofig file and adjust for your image to get better results.
+# It must also specify the output folders into which the Venus measurement results will go
+# Code can be used for ".czi" or ".lif" files by adjusting the "raw_file_type" value in the config file
+
+## step 1 - Go to the root_measurement folder
+cd root_measurement
+
+## step 2
+# Run the following commands so that the correct version of all the installed packages is accessible to root_measurement.
+export PATH=$PATH:~/packages/bftools
+source venv/bin/activate
+
+## step 3 - OPTIONAL
+# For Windows WSL
+# in case you need to use a folder not in your home directory you need to mount it each time you restart WSL (e.g. for a hypothetical drive Z)
+sudo mount -t drvfs Z: /mnt/z
+# will need password
+
+## step 4 - run the segmentation pipeline
+bash segment.sh "$_dir_of_config.yml"
+# Where $_dir_of_config.yml is the location of the config.yml file
+
+## step 5 - manually curate segmentation
+# Using custom software (https://github.com/jfozard/segcorrect), correct the segmentation and label cells according to cell file. Only "celltype" labels of >0 will be measured in subsequent steps.
+
+## step 6 - run the measurement pipeline
+bash measure.sh "$_dir_of_config.yml"
+# Where $_dir_of_config.yml is the location of the config.yml file

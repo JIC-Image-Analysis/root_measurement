@@ -5,6 +5,7 @@ import dtoolcore
 
 from dtoolbioimage.convert import raw_image_dataset_to_image_dataset
 
+from stacktools.config import Config
 
 class IndexedDirtree(object):
 
@@ -50,22 +51,22 @@ class IndexedDirtree(object):
 
 # @click.command()
 # @click.argument('data_root_fpath')
-def convert_image_data(data_root_fpath, output_base_uri, output_name):
+def convert_image_data(config):
     # TODO - bfconvert preflight
-    glob = "*.czi"
-    ids = IndexedDirtree(data_root_fpath, glob=glob)
+    glob = config.raw_file_type
+    ids = IndexedDirtree(config.raw_data_uri, glob=glob)
 
-    with dtoolcore.DataSetCreator(output_name, output_base_uri) as output_ds:
+    with dtoolcore.DataSetCreator(config.ids_name, config.ids_base_uri) as output_ds:
         raw_image_dataset_to_image_dataset(ids, output_ds)
 
 
 @click.command()
-@click.argument('data_root_fpath')
-@click.argument('output_base_uri')
-@click.argument('output_name')
-def main(data_root_fpath, output_base_uri, output_name):
+@click.argument('config_fpath')
+def main(config_fpath):
 
-    convert_image_data(data_root_fpath, output_base_uri, output_name)
+    config = Config(config_fpath)
+    
+    convert_image_data(config)
     
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 raw_data_uri: "$REPLACE_WITH_raw_data_FOLDER_LOCATION"
-raw_file_type: "*.lif" # or "*.czi"
+raw_file_type: "*.czi" # or "*.lif"
 ids_base_uri: "$REPLACE_WITH_LOCATION_OF_ids_FOLDER_-_must_exist"
 ids_name: "$REPLACE_WITH_ids_FOLDER_NAME_-_to_be_created"
 ids_uri: "$REPLACE_WITH_ids_FOLDER_LOCATION"
